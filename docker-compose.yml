@@ -10,6 +10,15 @@ services:
       - pgdata:/var/lib/postgresql/data
     ports:
       - 5432:5432
+
+  redis:
+    image: redis:4.0.14
+    command: redis-server --appendonly yes --maxmemory 536870912 --maxmemory-policy allkeys-lru
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data
+
 volumes:
   pgdata:
   elasticdata:
