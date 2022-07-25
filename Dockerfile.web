@@ -1,0 +1,13 @@
+# --platform is needed for Mac M1 builds to work after pushing to heroku
+FROM --platform=linux/amd64 ruby:2.7.6-bullseye
+WORKDIR /app
+
+# First copy gem files, if they haven't changed the bundle step can be skipped for a cached version
+COPY Gemfile* .
+RUN bundle install
+
+# Copy remaining app files
+COPY . .
+RUN bundle exec rails assets:precompile
+
+CMD bundle exec puma -p $PORT
