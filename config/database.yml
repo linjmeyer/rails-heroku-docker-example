@@ -1,0 +1,15 @@
+production:
+  url: <%= ENV['DATABASE_URL'] %>
+  pool: <%= ENV['DB_POOL'] || ENV['PUMA_MAX_THREADS'] || 16 %>
+
+development:
+  adapter: postgresql
+  database: lin-hello-world
+  host: <%= ENV.fetch('PGHOST', 'localhost') %>
+  username: <%= ENV['PGUSER'] %>
+
+test:
+  adapter: postgresql
+  host: <%= ENV.fetch('PGHOST', 'localhost') %>
+  database: lin-hello-world
+  username: <%= ENV['PGUSER'] %>
