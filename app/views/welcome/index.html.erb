@@ -1,5 +1,7 @@
 <h2>Hello World</h2>
 <p>
-  The Heroku version for this app is:
+  Heroku deploy info:
   <h1><pre><%= ENV.fetch('HEROKU_RELEASE_VERSION', 'v0-local') %></pre></h1>
+  <h1><pre><%= ENV.fetch('HEROKU_SLUG_COMMIT', 'sha1sha1sha1sha1') %></pre></h1>
+  <h1><pre><%= ENV.fetch('HEROKU_SLUG_DESCRIPTION', 'Fake commit message') %></pre></h1>
 </p> 
