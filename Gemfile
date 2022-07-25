@@ -29,6 +29,7 @@ gem "jbuilder"
 
 # Sidekiq
 gem 'sidekiq', '~>6.0.0'
+gem "sidekiq-cron"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

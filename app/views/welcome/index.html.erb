@@ -5,3 +5,11 @@
   <h1><pre><%= ENV.fetch('HEROKU_SLUG_COMMIT', 'sha1sha1sha1sha1') %></pre></h1>
   <h1><pre><%= ENV.fetch('HEROKU_SLUG_DESCRIPTION', 'Fake commit message') %></pre></h1>
 </p> 
+<p>
+  Cron Job Info:
+  <pre style="max-width:100%;white-space: pre-wrap; "><%= Sidekiq::Cron::Job.all %></pre>
+</p>
+<p>
+  Manual Job Info:
+  <pre style="max-width:100%;white-space: pre-wrap; "><%= Sidekiq::Queue.all %></pre>
+</p>
