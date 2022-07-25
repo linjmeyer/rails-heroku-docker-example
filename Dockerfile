@@ -1,14 +1,14 @@
-# Dockerfile.rails
-FROM ruby:3.1.2 AS rails-toolbox
+# Generic Ruber Dockerfile that install a rails monolith
+# Defaults to running puma, but entrypoint can be overridden for other uses (e.g. workers)
+FROM ruby:2.7.6
+WORKDIR /app
 
-# Default directory
-ENV INSTALL_PATH /opt/app
-RUN mkdir -p $INSTALL_PATH
+# First copy gem files, if they haven't changed the bundle step can be skipped for a cached version
+COPY Gemfile* .
+RUN bundle install
 
-# Install rails
-RUN gem install rails bundler
-#RUN chown -R user:user /opt/app
-WORKDIR /opt/app
+# Copy remaining app files
+COPY . .
 
 # Run a shell
-CMD ["/bin/sh"]
+ENTRYPOINT [ "bundle", "exec", "puma" ]
